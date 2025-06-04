@@ -1,0 +1,119 @@
+<!-- src/app/components/reserva-list/reserva-list.component.html -->
+
+<!-- ============================== -->
+<!--  BARRA SUPERIOR DE USUARIO      -->
+<!-- ============================== -->
+<div class="user-bar">
+  <div class="user-bar-left">
+    <span class="app-logo">
+      <i class="fas fa-futbol"></i>
+      AppCanchas
+    </span>
+  </div>
+
+  <div class="user-bar-right">
+    <span class="user-greeting">¡Hola, <strong>Cliente A</strong>!</span>
+
+    <!-- Solo mostramos el icono de usuario + caret -->
+    <div class="user-dropdown">
+      <i class="fas fa-user-circle user-icon"></i>
+      <i class="fas fa-caret-down dropdown-icon"></i>
+
+      <ul class="dropdown-menu">
+        <li><i class="fas fa-user-circle"></i> Mi Perfil</li>
+        <li><i class="fas fa-cog"></i> Ajustes</li>
+        <li class="divider"></li>
+        <li><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ============================== -->
+<!--  CONTENIDO PRINCIPAL (Mis Reservas) -->
+<!-- ============================== -->
+<div class="reservas-page-container">
+
+  <!-- HEADER CON BOTÓN “Volver a Canchas” -->
+  <header class="reservas-header">
+    <button class="btn btn-outline-primary volver-canchas-btn" (click)="irACanchas()">
+      <i class="fas fa-futbol"></i>
+      Volver a Canchas
+    </button>
+    <h1 class="reservas-title">Mis Reservas</h1>
+  </header>
+
+  <!-- Si hay mensaje de error, lo mostramos -->
+  <div *ngIf="errorMsg" class="alert alert-error">{{ errorMsg }}</div>
+
+  <!-- CARD con la tabla de reservas -->
+  <section class="reservas-card" *ngIf="reservas && reservas.length > 0">
+    <div class="table-responsive">
+      <table class="reservas-table">
+        <thead>
+          <tr>
+            <th>UUID Reserva</th>
+            <th>Fecha Reserva</th>
+            <th>Fecha Uso</th>
+            <th>Hora Inicio</th>
+            <th>Hora Fin</th>
+            <th>Cliente</th>
+            <th>Cancha</th>
+            <th>Estado</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let r of ordenarPorFecha(reservas)">
+  <td class="uuid-cell">{{ r.codigoreserva }}</td>
+  <td>{{ r.fechaReserva }}</td>
+  <td>{{ r.fechaUsoCancha }}</td>
+  <td>{{ r.horaInicio }}</td>
+  <td>{{ r.horaFin }}</td>
+  <td>{{ r.nombreCliente }}</td>
+  <td>{{ r.nombreCancha || '—' }}</td>
+
+  <td>
+    <span
+      class="estado-badge"
+      [ngClass]="{
+        'finalizada':  r.nombreEstado === 'FINALIZADA',
+        'cancelada':   r.nombreEstado === 'CANCELADA',
+        'pendiente':   r.nombreEstado === 'PENDIENTE',
+        'confirmada':  r.nombreEstado === 'CONFIRMADA'
+      }"
+    >
+      <i *ngIf="r.nombreEstado === 'FINALIZADA'" class="fas fa-check-circle"></i>
+      <i *ngIf="r.nombreEstado === 'CANCELADA'"  class="fas fa-times-circle"></i>
+      <i *ngIf="r.nombreEstado === 'PENDIENTE'"  class="fas fa-hourglass-half"></i>
+      <i *ngIf="r.nombreEstado === 'CONFIRMADA'" class="fas fa-bell"></i>
+      {{ r.nombreEstado }}
+    </span>
+  </td>
+
+  <td class="accion-cell">
+    <button
+      class="btn btn-sm btn-primary"
+      [disabled]="r.tieneResena || r.nombreEstado !== 'FINALIZADA'"
+      (click)="escribirResena(r)"
+    >
+      <i class="fas fa-comment-alt"></i>
+      {{ r.tieneResena ? 'Reseña Creada' : 'Escribir Reseña' }}
+    </button>
+  </td>
+</tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Si no hay reservas -->
+  <div *ngIf="reservas && reservas.length === 0 && !errorMsg" class="no-reservas">
+    <p>Aún no tienes reservas registradas.</p>
+  </div>
+
+  <!-- Footer ligero -->
+  <footer class="reservas-footer">
+    <small>© 2025 Proyecto Canchas · Todos los derechos reservados</small>
+  </footer>
+</div>

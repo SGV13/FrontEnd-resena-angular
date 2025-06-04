@@ -1,0 +1,268 @@
+/* src/app/components/resena-form/resena-form.component.css */
+
+
+:host {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+
+.resena-page {
+  background-image: url("https://civideportes.com.co/wp-content/uploads/2019/08/Cancha-de-f%C3%BAtbol-11.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+
+
+/* -------------- */
+/* Contenedor general */
+/* -------------- */
+.resena-container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+  position: relative;
+    width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* -------------- */
+/* HEADER */
+/* -------------- */
+.resena-header {
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+
+.resena-title {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 1.9rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0;
+}
+
+/* -------------- */
+/* ALERTAS */
+/* -------------- */
+.alert {
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.alert-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+/* -------------- */
+/* FORMULARIO */
+/* -------------- */
+.resena-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Grupo de formulario */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Etiqueta de cada grupo */
+.rating-label,
+label[for='comentario'] {
+  display: block;
+  width: 100%;
+  margin: 0;            /* Quitamos margen que pudiese desalinear */
+  padding: 0;           /* Quitamos padding extra */
+  font-weight: 500;
+  font-size: 1rem;
+  color: #2c3e50;
+}
+
+/* -------------- */
+/* RATING (estrellas) */
+/* -------------- */
+.rating-group {
+  position: relative;
+}
+
+.stars {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.stars i {
+  font-size: 2rem;
+  cursor: pointer;
+  transition: color 0.2s, transform 0.2s;
+  color: #ccc; /* gris claro por defecto */
+}
+
+.stars i.fas.filled {
+  color: #f1c40f; /* amarillo dorado */
+  transform: scale(1.1);
+}
+
+/* Texto de ayuda debajo de las estrellas */
+.helper-text {
+  font-size: 0.85rem;
+  color: #e74c3c; /* rojo para error */
+  margin-top: 0.25rem;
+}
+
+/* -------------- */
+/* COMENTARIO */
+/* -------------- */
+.comment-input {
+  width: 100%;
+  box-sizing: border-box;   /* Incluye padding en el ancho total */
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  min-height: 120px;
+  transition: border-color 0.2s;
+  margin: 0;                /* Quitamos cualquier margen lateral que cause shift */
+}
+
+.comment-input:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+/* -------------- */
+/* BOTONES */
+/* -------------- */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.btn {
+  padding: 0.65rem 1.25rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, opacity 0.2s;
+}
+
+.btn-primary {
+  background-color: #3498db;
+  color: #ffffff;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #2980b9;
+}
+
+.btn-secondary {
+  background-color: #7f8c8d;
+  color: #ffffff;
+}
+
+.btn-secondary:hover {
+  background-color: #606c70;
+}
+
+.btn:disabled {
+  background-color: #bdc3c7;
+  color: #ffffff;
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+
+.header-icon {
+  color: #f1c40f; /* dorado */
+  font-size: 2.2rem;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+.resena-subtitle {
+  text-align: center;
+  font-size: 1rem;
+  color: #555;
+  margin-top: 0.5rem;
+}
+.resena-logo {
+  position: absolute;
+  top: -20px;
+  left: calc(50% - 20px);
+  background-color: #ffffff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.resena-logo i {
+  font-size: 1.25rem;
+  color: #3498db;
+}
+
+
+/* -------------- */
+/* RESPONSIVE */
+/* -------------- */
+@media screen and (max-width: 600px) {
+  .resena-container {
+    padding: 1.5rem 0.75rem;
+  }
+  .resena-title {
+    font-size: 1.6rem;
+  }
+  .stars i {
+    font-size: 1.75rem;
+  }
+  .comment-input {
+    font-size: 0.95rem;
+  }
+  .btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+}

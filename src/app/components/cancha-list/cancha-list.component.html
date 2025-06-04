@@ -1,0 +1,51 @@
+<!-- src/app/components/cancha-list/cancha-list.component.html -->
+<div class="cancha-container">
+  <!-- Encabezado con título, buscador y enlace a Reservas -->
+  <header class="cancha-header">
+    <h1 class="cancha-title">Elige tu Cancha</h1>
+    <div class="cancha-search">
+      <input
+        type="text"
+        [(ngModel)]="buscador"
+        placeholder="🔍 Buscar cancha..."
+        class="search-input"
+      />
+      <button class="btn btn-search" (click)="buscar()">Buscar</button>
+    </div>
+    <button class="btn btn-reservas" (click)="verReservas()">
+      Ver mis Reservas
+    </button>
+  </header>
+
+  <!-- Grid de tarjetas de canchas -->
+  <main class="cancha-grid">
+    <div *ngFor="let cancha of canchas" class="cancha-card">
+      <div class="card-header">
+        <h2 class="cancha-name">{{ cancha.nombre }}</h2>
+        <span
+          class="status-badge"
+          [class.disponible]="cancha.disponible"
+          [class.no-disponible]="!cancha.disponible"
+        >
+          {{ cancha.disponible ? 'Disponible' : 'No disponible' }}
+        </span>
+      </div>
+      <div class="card-body">
+        <p class="cancha-description">
+          <!-- Puedes reemplazar este texto por datos reales si los tienes -->
+          Una cancha equipada con césped sintético de última generación y
+          vestuarios completos.
+        </p>
+      </div>
+      <div class="card-footer">
+        <button
+          class="btn btn-reservar"
+          [disabled]="!cancha.disponible"
+          (click)="reservar(cancha)"
+        >
+          {{ cancha.disponible ? 'Reservar' : 'No Disponible' }}
+        </button>
+      </div>
+    </div>
+  </main>
+</div>

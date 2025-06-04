@@ -1,0 +1,232 @@
+/* ==================================== */
+/*  BARRA SUPERIOR DE USUARIO (USER BAR) */
+/* ==================================== */
+
+.user-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid #e1e1e1;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.user-bar-left .app-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.user-bar-left .app-logo i {
+  font-size: 1.6rem;
+  color: #3498db;
+}
+
+.user-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Saludo del usuario */
+.user-greeting {
+  font-size: 0.95rem;
+  color: #2c3e50;
+}
+
+/* Contenedor del dropdown de usuario */
+.user-dropdown {
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+/* Ícono de usuario (FontAwesome) */
+.user-icon {
+  font-size: 1.6rem;
+  color: #3498db;
+}
+
+/* Ícono de flecha */
+.dropdown-icon {
+  margin-left: 0.3rem;
+  font-size: 0.8rem;
+  color: #2c3e50;
+}
+
+/* Estilos para el menú desplegable */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.3rem;
+  background-color: #ffffff;
+  border: 1px solid #dcdcdc;
+  border-radius: 5px;
+  min-width: 160px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  list-style: none;
+  padding: 0.25rem 0;
+  display: none;
+  z-index: 200;
+}
+
+.user-dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* Cada ítem dentro del dropdown */
+.dropdown-menu li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1rem;
+  font-size: 0.95rem;
+  color: #2c3e50;
+  transition: background-color 0.2s;
+}
+
+.dropdown-menu li:hover {
+  background-color: #f2f2f2;
+}
+
+/* Separador en el dropdown */
+.dropdown-menu .divider {
+  height: 1px;
+  margin: 0.25rem 0;
+  background-color: #e1e1e1;
+}
+
+.dropdown-menu i {
+  font-size: 1rem;
+  color: #3498db;
+}
+
+/* Ajuste de espacio para que no tape la barra sticky */
+.reservas-page-container {
+  margin-top: 1rem;
+}
+
+/* ==================== */
+/*  RESTO DE ESTILOS    */
+/* ==================== */
+
+/* Header “Mis Reservas” y botón Volver */
+.reservas-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.reservas-title {
+  font-size: 1.8rem;
+  color: #2c3e50;
+  margin: 0;
+}
+
+/* Botón “Volver a Canchas” */
+.volver-canchas-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.95rem;
+}
+
+/* Card que contiene la tabla */
+.reservas-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+  padding: 1rem;
+}
+
+/* Tabla */
+.table-responsive {
+  overflow-x: auto;
+}
+
+.reservas-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.reservas-table thead {
+  background-color: #3498db;
+  color: #ffffff;
+}
+
+.reservas-table th,
+.reservas-table td {
+  padding: 0.75rem 0.5rem;
+  text-align: left;
+  vertical-align: middle;
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.uuid-cell {
+  max-width: 160px;
+  word-break: break-word;
+}
+
+/* Etiquetas de estado */
+.estado-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.estado-badge.finalizada   { background-color: #27ae60; } /* verde */
+.estado-badge.cancelada    { background-color: #c0392b; } /* rojo */
+.estado-badge.pendiente    { background-color: #f39c12; } /* naranja */
+.estado-badge.confirmada   { background-color: #2980b9; } /* azul */
+
+/* Botón dentro de la tabla */
+.accion-cell .btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.btn-sm {
+  font-size: 0.85rem;
+  padding: 0.4rem 0.8rem;
+}
+
+/* Si no hay reservas */
+.no-reservas {
+  text-align: center;
+  margin-top: 2rem;
+  color: #555;
+}
+
+.alert-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+}
+
+.reservas-footer {
+  margin-top: 2rem;
+  text-align: center;
+  color: #888;
+  font-size: 0.85rem;
+}

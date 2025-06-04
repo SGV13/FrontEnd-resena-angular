@@ -1,0 +1,127 @@
+<!-- src/app/components/resena-form/resena-form.component.html -->
+<div class="resena-page">
+    <div class="resena-container">
+    <!-- Ícono flotante encima de la tarjeta -->
+    <div class="resena-logo">
+        <i class="fas fa-comment-dots"></i>
+    </div>
+
+    <!-- TÍTULO Y SUBTÍTULO -->
+    <header class="resena-header">
+        <i class="fas fa-star header-icon"></i>
+        <h1 class="resena-title">Dejar una Reseña</h1>
+        <p class="resena-subtitle">
+        Ayúdanos a mejorar dejando tu calificación y un comentario honesto.
+        </p>
+    </header>
+
+    <!-- MENSAJES -->
+    <div *ngIf="errorMsg" class="alert alert-error">{{ errorMsg }}</div>
+    <div *ngIf="successMsg" class="alert alert-success">{{ successMsg }}</div>
+
+    <!-- FORMULARIO REACTIVO -->
+    <form
+        [formGroup]="resenaForm"
+        (ngSubmit)="onSubmit()"
+        class="resena-form"
+        novalidate
+    >
+        <!-- 1) RATING POR ESTRELLAS -->
+        <div class="form-group rating-group">
+        <label class="rating-label">Calificación:</label>
+        <div class="stars" (mouseleave)="resetHover()">
+            <!-- Creamos 5 estrellas: -->
+            <i
+            *ngFor="let star of [1, 2, 3, 4, 5]; let i = index"
+            class="fa-star"
+            [ngClass]="{
+                'fas filled':
+                hoverRating >= star ||
+                (hoverRating === 0 && f['calificacion'].value >= star),
+                'far':
+                hoverRating < star &&
+                (f['calificacion'].value < star || f['calificacion'].value === null)
+            }"
+            (mouseenter)="onStarHover(star)"
+            (click)="setRating(star)"
+            [attr.aria-label]="'Estrella ' + star"
+            ></i>
+        </div>
+
+        <!-- Mensaje: falta seleccionar al menos una estrella -->
+        <div
+            class="helper-text"
+            *ngIf="
+            (resenaForm.touched || resenaForm.dirty) &&
+            f['calificacion'].errors?.['required']
+            "
+        >
+            ⭐ Debes seleccionar al menos una estrella.
+        </div>
+        <!-- Mensaje: fuera de rango (min/max) -->
+        <div
+            class="helper-text"
+            *ngIf="
+            (resenaForm.touched || resenaForm.dirty) &&
+            (f['calificacion'].errors?.['min'] ||
+                f['calificacion'].errors?.['max'])
+            "
+        >
+            ⭐ La calificación debe estar entre 1 y 5 estrellas.
+        </div>
+        <!-- Mensaje: no es entero -->
+        <div
+            class="helper-text"
+            *ngIf="
+            (resenaForm.touched || resenaForm.dirty) &&
+            f['calificacion'].errors?.['pattern']
+            "
+        >
+            ⭐ La calificación solo puede ser un número entero.
+        </div>
+        </div>
+
+        <!-- 2) CAMPO DE COMENTARIO -->
+        <div class="form-group comment-group">
+        <label for="comentario">Comentario:</label>
+        <textarea
+            id="comentario"
+            formControlName="comentario"
+            rows="5"
+            placeholder="Escribe aquí tu comentario..."
+            class="comment-input"
+        ></textarea>
+        <!-- Mensajes de error para comentario -->
+        <div
+            class="helper-text"
+            *ngIf="
+            f['comentario'].errors && (f['comentario'].touched ||
+                f['comentario'].dirty)
+            "
+        >
+            <span *ngIf="f['comentario'].errors['required']">
+            ✏️ El comentario es obligatorio.
+            </span>
+            <span *ngIf="f['comentario'].errors['minlength']">
+            ✏️ Debe tener al menos
+            {{ f['comentario'].errors['minlength'].requiredLength }} caracteres.
+            </span>
+            <span *ngIf="f['comentario'].errors['maxlength']">
+            ✏️ No puede exceder los
+            {{ f['comentario'].errors['maxlength'].requiredLength }} caracteres.
+            </span>
+        </div>
+        </div>
+
+        <!-- 3) BOTONES -->
+        <div class="form-actions">
+        <button type="submit" class="btn btn-primary" [disabled]="resenaForm.invalid">
+            Enviar Reseña
+        </button>
+        <button type="button" class="btn btn-secondary" (click)="cancelar()">
+            Cancelar
+        </button>
+        </div>
+    </form>
+    </div>
+</div>
